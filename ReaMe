@@ -1,0 +1,16 @@
+#!/bin/bash
+
+apt update
+apt upgrade
+git clone https://github.com/Maxvol20/impacket.git
+git clone https://github.com/danielmiessler/SecLists.git
+apt install libxcb-cursor0 libxcb-xinerama0
+git clone https://github.com/maurosoria/dirsearch.git
+git clone https://github.com/Maxvol20/cvemarker.git
+apt install -y docker.io
+systemctl enable docker --now
+usermod -aG docker $USER
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" | sudo tee /etc/apt/sources.list.d/docker.list
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+apt update
+apt install -y docker-ce docker-ce-cli containerd.io
